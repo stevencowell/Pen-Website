@@ -204,19 +204,32 @@
     .resource-links ul li {
       font-weight: bold;
     }
-    /* Keep quiz list items normal weight */
-    .quiz li {
-      font-weight: normal;
-      margin-bottom: 15px;
-    }
-    /* Make quiz questions bold */
-    .quiz li > p {
-      font-weight: bold;
-    }
     .quiz label {
       font-weight: normal;
       display: block;
       margin: 4px 0;
+    }
+    /* New single-column quiz layout */
+    .quiz-question {
+      margin-bottom: 24px;
+      padding: 12px 0;
+      border-bottom: 1px solid #ddd;
+    }
+    .question-text {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .quiz-question label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    .quiz-question input[type="radio"] {
+      margin-right: 6px;
+    }
+    @media (max-width: 600px) {
+      .quiz-question { padding: 10px 0; }
+      .question-text { font-size: 1rem; }
     }
     .resource-links a {
       font-weight: bold;
@@ -531,18 +544,18 @@ function askForName() {
 }
 
 function shuffleQuizAnswers() {
-  document.querySelectorAll('form.quiz li').forEach(li => {
-    const labels = Array.from(li.querySelectorAll('label'));
+  document.querySelectorAll('form.quiz .quiz-question').forEach(q => {
+    const labels = Array.from(q.querySelectorAll('label'));
     if (labels.length <= 1) return;
-    li.querySelectorAll('br').forEach(br => br.remove());
+    q.querySelectorAll('br').forEach(br => br.remove());
     labels.forEach(l => l.remove());
     for (let i = labels.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [labels[i], labels[j]] = [labels[j], labels[i]];
     }
     labels.forEach((label, idx) => {
-      li.appendChild(label);
-      if (idx < labels.length - 1) li.appendChild(document.createElement('br'));
+      q.appendChild(label);
+      if (idx < labels.length - 1) q.appendChild(document.createElement('br'));
     });
   });
 }
@@ -556,7 +569,7 @@ function initQuizFeatures() {
     });
   }
   // Ensure all quiz question buttons have an aria-label
-  document.querySelectorAll('form.quiz li > p button').forEach(btn => {
+  document.querySelectorAll('form.quiz .quiz-question > p button').forEach(btn => {
     if (!btn.hasAttribute('aria-label')) {
       btn.setAttribute('aria-label', 'Read question aloud');
     }
@@ -581,8 +594,8 @@ function submitQuiz(btn, quizType) {
   const fieldset = form.querySelector('fieldset');
   let correct = 0, total = 0;
   const results = [];
-  fieldset.querySelectorAll('li').forEach((li, idx) => {
-    const radios = li.querySelectorAll('input[type=radio]');
+  fieldset.querySelectorAll('.quiz-question').forEach((q, idx) => {
+    const radios = q.querySelectorAll('input[type=radio]');
     let userCorrect = false, answered = false;
     radios.forEach(radio => {
       if (radio.checked) {
@@ -601,7 +614,7 @@ function submitQuiz(btn, quizType) {
     });
     if (userCorrect) correct += 1;
     results.push({
-      question: li.querySelector('p').textContent,
+      question: q.querySelector('p').textContent,
       answer: Array.from(radios).find(r => r.checked)?.value || ''
     });
   });
@@ -644,12 +657,12 @@ function submitAdvancedQuiz(btn, quizType) {
   const form = btn.closest('form');
   const textareas = form.querySelectorAll('textarea');
   const responses = [];
-  textareas.forEach((ta) => {
-    responses.push({
-      question: ta.closest('li').querySelector('p').textContent,
-      answer: ta.value.trim()
+    textareas.forEach((ta) => {
+      responses.push({
+        question: ta.closest('.quiz-question').querySelector('p').textContent,
+        answer: ta.value.trim()
+      });
     });
-  });
 
   const studentName = prompt('Please enter your name to submit your answers:');
   if (!studentName) return;
