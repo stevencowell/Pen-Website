@@ -18,7 +18,7 @@ const weekCounts = {
 function loadSections() {
   return Promise.all(sections.map(id => {
     return fetch('sections/' + id + '.html')
-      .then(resp => resp.text())
+      .then(resp => resp.ok ? resp.text() : '')
       .then(html => {
         const el = document.getElementById(id);
         if (el) el.innerHTML = html;
@@ -32,6 +32,7 @@ async function loadWeeks() {
     if (!container) return;
     for (let i = 1; i <= count; i++) {
       const resp = await fetch(`sections/${section}/week${i}.html`);
+      if (!resp.ok) continue;
       const html = await resp.text();
       const div = document.createElement('div');
       div.innerHTML = html;
