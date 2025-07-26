@@ -8,10 +8,11 @@ const sections = [
   'advanced-activities'
 ];
 
+// Only load weeks that actually exist to avoid 404 errors being injected
 const weekCounts = {
-  'main-theory': 10,
-  'support-activities': 10,
-  'advanced-activities': 10
+  'main-theory': 3,
+  'support-activities': 3,
+  'advanced-activities': 3
 };
 
 function loadSections() {
