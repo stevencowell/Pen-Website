@@ -558,9 +558,8 @@ function shuffleQuizAnswers() {
       const j = Math.floor(Math.random() * (i + 1));
       [labels[i], labels[j]] = [labels[j], labels[i]];
     }
-    labels.forEach((label, idx) => {
+    labels.forEach(label => {
       q.appendChild(label);
-      if (idx < labels.length - 1) q.appendChild(document.createElement('br'));
     });
   });
 }
