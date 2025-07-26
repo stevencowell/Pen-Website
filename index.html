@@ -572,6 +572,15 @@ function shuffleQuizAnswers() {
 
 function initQuizFeatures() {
   shuffleQuizAnswers();
+  // Number each question within its quiz
+  document.querySelectorAll('form.quiz').forEach(form => {
+    form.querySelectorAll('.quiz-question .question-text').forEach((p, idx) => {
+      if (!p.dataset.numbered) {
+        p.insertBefore(document.createTextNode((idx + 1) + '. '), p.firstChild);
+        p.dataset.numbered = 'true';
+      }
+    });
+  });
   const closeBtn = document.querySelector('#resultPopup .close-popup');
   if (closeBtn) {
     closeBtn.addEventListener('click', () => {
