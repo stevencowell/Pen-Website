@@ -1,0 +1,9 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 420'>
+  <rect width='900' height='420' fill='#ecfeff'/>
+  <rect x='80' y='60' width='740' height='300' rx='20' fill='#ffffff' stroke='#0e7490' stroke-width='6'/>
+  <text x='120' y='120' font-size='42' font-family='Arial' fill='#155e75' font-weight='700'>Pen Quality Checklist</text>
+  <text x='130' y='178' font-size='28' font-family='Arial' fill='#0f172a'>✔ Flush fit between wood and hardware</text>
+  <text x='130' y='225' font-size='28' font-family='Arial' fill='#0f172a'>✔ Smooth finish with no scratches</text>
+  <text x='130' y='272' font-size='28' font-family='Arial' fill='#0f172a'>✔ Reliable click/twist mechanism</text>
+  <text x='130' y='319' font-size='28' font-family='Arial' fill='#0f172a'>✔ Reflection notes for improvement</text>
+</svg>

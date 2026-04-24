@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-.audio-btn {
-    font-size: 0.8em;
-    padding: 2px 4px;
-}
-</style>
+
 
   <meta charset="utf-8" />
   <meta name="description" content="The Pen Project - 2025. Resources, projects, and detailed content covering the syllabus and program for the pen project unit." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Pen Project - 2025</title>
   <style>
+    .audio-btn {
+      font-size: 0.8em;
+      padding: 2px 4px;
+    }
     /* General Styles */
     body {
       margin: 0;
@@ -328,19 +327,130 @@ summary { font-weight: bold; }
       cursor: pointer;
     }
 
+
+  /* 2026 visual refresh */
+  :root {
+    --brand: #2563eb;
+    --brand-dark: #1e3a8a;
+    --bg-soft: #eef2ff;
+    --card-radius: 14px;
+  }
+  body {
+    background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 45%, #f8fafc 100%);
+  }
+  header {
+    background: radial-gradient(circle at top right, #60a5fa, #1d4ed8 55%, #1e3a8a);
+    padding: 32px 20px;
+  }
+  .header-shell {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .hero-cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .hero-card {
+    background: rgba(255,255,255,0.16);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 12px;
+    padding: 12px;
+    backdrop-filter: blur(3px);
+    font-weight: 700;
+  }
+  .hero-card span { display:block; font-size: .86rem; font-weight: 500; opacity:.95; }
+  .header-image img { box-shadow: 0 15px 25px rgba(0,0,0,.2); }
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 8px 20px rgba(30,58,138,.2);
+  }
+  nav a { font-weight: 700; }
+  main.content {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 22px 14px 36px;
+  }
+  .content-section {
+    border-radius: var(--card-radius);
+    border: 1px solid #dbeafe;
+    box-shadow: 0 10px 24px rgba(15,23,42,.08);
+  }
+  .content-section h2 {
+    font-size: 1.6rem;
+  }
+  details {
+    border-radius: 12px !important;
+    border-left: 5px solid #60a5fa !important;
+  }
+  .quiz fieldset {
+    border-radius: 12px;
+    border: 1px solid #bfdbfe;
+    background: #f8fbff;
+  }
+  .check-btn, .plan-link a {
+    background: linear-gradient(90deg, #2563eb, #1d4ed8) !important;
+    color: #fff;
+    border: none;
+    border-radius: 999px !important;
+    padding: 10px 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .theory-visual {
+    margin: 16px 0 18px;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 12px;
+    padding: 8px;
+  }
+  .theory-visual img,
+  .question-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+  }
+  .theory-visual figcaption {
+    font-size: 0.95rem;
+    color: #334155;
+    padding: 8px 4px 2px;
+  }
+  .question-visual {
+    margin: 8px 0 10px;
+  }
+  @media (max-width: 900px) {
+    .header-shell { grid-template-columns: 1fr; text-align: center; }
+    .hero-cards { grid-template-columns: repeat(3, 1fr); }
+  }
+
 </style>
 
 </head>
 <body>
 <header>
-    <h1>The Pen Project</h1>
-  <p>Resources, Projects, and Content for Learning</p>  
-  <div class="header-image">
-    <!-- STAFF: Replace 'sample_project.png' with your project image -->
-      <img src="pen.jpg" alt="Pen project" style="max-width:300px; width:100%; margin-top:20px; border-radius:5px;" />
-    <div class="plan-link" style="margin-top:10px;">
-      <!-- STAFF: Update link to your project's plan PDF -->
-      <a href="YourProjectPlan.pdf" style="background:#28a745; color:#fff; padding:10px 15px; border-radius:4px; font-weight:bold; display:inline-block;" target="_blank">Download Project Plan (PDF)</a>
+  <div class="header-shell">
+    <div>
+      <h1>The Pen Project</h1>
+      <p>Resources, Projects, and Content for Learning</p>
+      <div class="hero-cards" aria-label="Course highlights">
+        <div class="hero-card">3 Core Weeks<span>Setup, Turning, Evaluation</span></div>
+        <div class="hero-card">30+ Quiz Questions<span>Instant feedback + audio</span></div>
+        <div class="hero-card">Visual Learning<span>Process diagrams and prompts</span></div>
+      </div>
+    </div>
+    <div class="header-image">
+      <img src="pen.jpg" alt="Pen project" style="max-width:360px; width:100%; margin-top:20px; border-radius:12px;" />
+      <div class="plan-link" style="margin-top:12px;">
+        <a href="YourProjectPlan.pdf" target="_blank">Download Project Plan (PDF)</a>
+      </div>
     </div>
   </div>
 </header>
